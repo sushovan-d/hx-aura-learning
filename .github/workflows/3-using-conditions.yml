@@ -1,0 +1,32 @@
+name: Conditional Execution Workflow
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  conditional_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Step 1
+        run: echo "Step 1"
+
+      - name: Step 2
+        if: success()
+        run: echo "Step 2"
+
+      - name: Step 3
+        if: env.condition == 'true'
+        env:
+          condition: 'false'
+        run: echo "Step 3"
+
+      - name: Step 4
+        if: failure()
+        run: echo "Step 3 failed"
+
+      - name: Always Run Step 5
+        if: always()
+        run: echo "Always Run Step 5"
