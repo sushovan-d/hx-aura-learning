@@ -1,26 +1,26 @@
 name: Using GitHub Permissions Workflow
 
 on: 
-  workflow_dispatch:        
+  workflow_dispatch:
 
 jobs:
-    build:
-        permissions:
-            contents: write
-        runs-on: ubuntu-latest
+  build:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout Repository
-              uses: actions/checkout@v2
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-            - name: Configure Git 
-            run: | 
-                git config --global user.name "sushovan-d"
-                git config --global user.email "sushovan.das@hyland.com" 
-                
-            - name: Push 
-            run: | 
-                echo "Hello, Github!" > hello.txt
-                git add hello.txt
-                git commit -m "Add hello.txt" 
-                git push
+      - name: Configure Git
+        run: |
+          git config --global user.name "sushovan-d"
+          git config --global user.email "sushovan.das@hyland.com" 
+
+      - name: Push
+        run: |
+          echo "Hello, Github!" > hello.txt
+          git add hello.txt
+          git commit -m "Add hello.txt" 
+          git push
