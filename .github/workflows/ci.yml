@@ -18,10 +18,10 @@ jobs:
           uses: actions/setup-dotnet@6bd8b7f7774af54e05809fcc5431931b3eb1ddee # v4.0.1 with: dotnet-version: '8.0.x'
 
         - name: Build Project
-          run: dotnet build ./hx-aura-learning/hx-aura-learning-api.csproj --configuration Release --no-restore
+          run: dotnet build ./hx-aura-learning-api/hx-aura-learning-api.csproj --configuration Release --no-restore
 
         - name: Publish Project
-          run: dotnet publish ./hx-aura-learning/hx-aura-learning-api.csproj -c Release -o ./app/publish
+          run: dotnet publish ./hx-aura-learning-api/hx-aura-learning-api.csproj -c Release -o ./app/publish
 
         - name: Set up QEMU
           uses: docker/setup-qemu-action@v3.2.0
