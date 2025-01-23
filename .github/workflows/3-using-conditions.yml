@@ -1,9 +1,7 @@
 name: Conditional Execution Workflow
 
 on: 
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   conditional_job:
