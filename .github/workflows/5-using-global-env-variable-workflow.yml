@@ -1,0 +1,34 @@
+name: Global Environment Variable Workflow
+
+on: 
+  workflow_dispatch:
+
+env:
+    PROJECT_NAME: "HX Aura Learning"
+    DEPENDENCIES_MESSAGE: "Install .Net 8 Dependencies for $PROJECT_NAME"
+    BUILD_MESSAGE: "Build .Net 8 API for $PROJECT_NAME"
+    TEST_MESSAGE: "Test .Net 8 API for $PROJECT_NAME"
+
+jobs:
+    setup-dependencies:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v2
+
+            - name: Install Dependencies
+              run: echo "$DEPENDENCIES_MESSAGE"
+
+    build:
+        runs-on: ubuntu-latest
+        needs: setup-dependencies
+        steps:
+            - name: Build .Net 8 API
+              run: echo "$BUILD_MESSAGE"
+
+    test:
+        runs-on: ubuntu-latest
+        needs: build
+        steps:
+            - name: Test .Net 8 API
+              run: echo "${{env.TEST_MESSAGE}}"
