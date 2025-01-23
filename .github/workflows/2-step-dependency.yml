@@ -1,0 +1,18 @@
+name: Step Dependency Workflow
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate a Random Number
+        id: generate_number
+        run: echo "number=$((RANDOM % 100))" >> $GITHUB_ENV
+
+      - name: Print Random Number
+        run: echo "Random Number: ${{ env.number }}"
