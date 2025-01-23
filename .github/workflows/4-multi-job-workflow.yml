@@ -16,7 +16,7 @@ jobs:
 
     build:
         runs-on: ubuntu-latest
-        needs: setup dependencies
+        needs: setup-dependencies
         steps:
             - name: Build .Net 8 API
               run: echo "Build .Net 8 API"
