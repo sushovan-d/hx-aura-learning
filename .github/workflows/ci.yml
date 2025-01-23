@@ -28,9 +28,4 @@ jobs:
                 -t ${{ env.IMAGE_NAME }}:${{ env.VERSION }} \
                 --load \
                 -f ./Dockerfile
-              run: |
-                docker buildx build . \
-                --platform linux/arm64 \
-                -t ${{ env.IMAGE_NAME }}:${VERSION} \
-                --load \
-                -f ./Dockerfile
+             
