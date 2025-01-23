@@ -8,24 +8,30 @@ env:
   VERSION: '1.0.0'
 
 jobs:
-    build:
-        steps:
-            - name: Build Project
-              run: dotnet build ./hx-aura-learning/hx-aura-learning.csproj --configuration Release --no-restore
+  build:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v2
 
-            - name: Publish Project
-              run: dotnet publish ./hx-aura-learning/hx-aura-learning.csproj -c Release -o ./app/publish
+        - name: Setup dotnet
+          uses: actions/setup-dotnet@6bd8b7f7774af54e05809fcc5431931b3eb1ddee # v4.0.1 with: dotnet-version: '8.0.x'
 
-            - name: Set up QEMU
-              uses: docker/setup-qemu-action@v3.2.0
-              with:
-                platforms: 'arm64,arm'
+        - name: Build Project
+          run: dotnet build ./hx-aura-learning-callmetirex/hx-aura-learning-callmetirex.csproj --configuration Release --no-restore
 
-            - name: Setup Docker Build
-              run: |
-                docker buildx build . \
-                --platform linux/arm64 \
-                -t ${{ env.IMAGE_NAME }}:${{ env.VERSION }} \
-                --load \
-                -f ./Dockerfile
-             
+        - name: Publish Project
+          run: dotnet publish ./hx-aura-learning-callmetirex/hx-aura-learning-callmetirex.csproj -c Release -o ./app/publish
+
+        - name: Set up QEMU
+          uses: docker/setup-qemu-action@v3.2.0
+          with:
+            platforms: 'arm64,arm'
+
+        - name: Setup Docker Build
+          run: |
+            docker buildx build . \
+              --platform linux/arm64 \
+              -t ${{ env.IMAGE_NAME }}:${{ env.VERSION }} \
+              --load \
+              -f ./Dockerfile
