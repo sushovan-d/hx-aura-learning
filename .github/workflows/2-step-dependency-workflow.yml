@@ -15,4 +15,4 @@ jobs:
               run: echo "number=$((RANDOM % 100))" >> $GITHUB_ENV
 
             - name: Print Random Number
-              run: echo "Random Number: $number"
+              run: echo "Random Number: ${{ env.number }}"
