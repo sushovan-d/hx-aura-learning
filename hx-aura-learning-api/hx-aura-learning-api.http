@@ -1,0 +1,6 @@
+@hx_aura_learning_api_HostAddress = http://localhost:5149
+
+GET {{hx_aura_learning_api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
